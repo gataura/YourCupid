@@ -120,18 +120,18 @@ class SplashActivity : BaseActivity() {
         YandexMetrica.activate(this, config)
         YandexMetrica.enableActivityAutoTracking(this.application)
 
-        val success = ShortcutBadger.applyCount(this, badgeCount)
-        if (!success) {
-            startService(
-                    Intent(this, BadgeIntentService::class.java).putExtra("badgeCount", badgeCount)
-            )
-        }
-
-        try {
-            Badges.setBadge(this, badgeCount)
-        } catch (badgesNotSupportedException: BadgesNotSupportedException) {
-            Log.d("SplashActivityBadge", badgesNotSupportedException.message)
-        }
+//        val success = ShortcutBadger.applyCount(this, badgeCount)
+//        if (!success) {
+//            startService(
+//                    Intent(this, BadgeIntentService::class.java).putExtra("badgeCount", badgeCount)
+//            )
+//        }
+//
+//        try {
+//            Badges.setBadge(this, badgeCount)
+//        } catch (badgesNotSupportedException: BadgesNotSupportedException) {
+//            Log.d("SplashActivityBadge", badgesNotSupportedException.message)
+//        }
 
         database = FirebaseDatabase.getInstance().reference
 
