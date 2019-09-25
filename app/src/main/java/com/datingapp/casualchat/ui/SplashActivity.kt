@@ -21,6 +21,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.onesignal.OneSignal
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 import kotlinx.android.synthetic.main.activity_web_view.*
 import me.leolin.shortcutbadger.ShortcutBadger
 import org.joda.time.DateTime
@@ -113,6 +115,10 @@ class SplashActivity : BaseActivity() {
         }
 
         progressBar.visibility = View.VISIBLE
+
+        val config = YandexMetricaConfig.newConfigBuilder("41fb9c6c-8567-408c-8038-8092dbf2d183").build()
+        YandexMetrica.activate(this, config)
+        YandexMetrica.enableActivityAutoTracking(this.application)
 
         val success = ShortcutBadger.applyCount(this, badgeCount)
         if (!success) {
