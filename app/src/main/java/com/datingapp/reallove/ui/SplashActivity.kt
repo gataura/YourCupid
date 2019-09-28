@@ -1,21 +1,19 @@
-package com.datingapp.casualchat.ui
+package com.datingapp.reallove.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.preference.PreferenceManager
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.datingapp.casualchat.*
-import com.datingapp.casualchat._core.BaseActivity
-import com.datingapp.casualchat.activities.MainScreenActivity
-import com.github.arturogutierrez.Badges
-import com.github.arturogutierrez.BadgesNotSupportedException
+import com.datingapp.reallove.*
+import com.datingapp.reallove._core.BaseActivity
+import com.datingapp.reallove.activities.GlavEkranActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -24,8 +22,8 @@ import com.onesignal.OneSignal
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 import kotlinx.android.synthetic.main.activity_web_view.*
-import me.leolin.shortcutbadger.ShortcutBadger
 import org.joda.time.DateTime
+import org.joda.time.Days
 
 
 /**
@@ -56,13 +54,30 @@ class SplashActivity : BaseActivity() {
 
         firebaseAnalytic = FirebaseAnalytics.getInstance(this)
 
-        prefs = getSharedPreferences("com.datingapp.casualchat", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("com.datingapp.reallove", Context.MODE_PRIVATE)
         prefs.edit().putString("sessionTime", DateTime.now().toString()).apply()
+
+        checkReturn()
 
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init()
+    }
+
+    fun checkReturn() {
+        if (prefs.getString("dateInstall", "") != "") {
+            if (Days.daysBetween(DateTime(prefs.getString("dateInstall", "")), DateTime.now()).days == 1) {
+                if (!prefs.getBoolean("rrToday", false)) {
+                    prefs.edit().putString("rr", "RR").apply()
+                    val rrOneBundle = Bundle()
+                    rrOneBundle.putString("RR", "RR")
+
+                    firebaseAnalytic.logEvent("RR", rrOneBundle)
+                    prefs.edit().putBoolean("rrToday", true).apply()
+                }
+            }
+        }
     }
 
 
@@ -73,18 +88,18 @@ class SplashActivity : BaseActivity() {
     override fun setUI() {
         logEvent("splash-screen")
         webView.webViewClient = object : WebViewClient() {
-            /**
-             * Check if url contains key words:
-             * /money - needed user (launch WebViewActivity or show in browser)
-             * /main - bot or unsuitable user (launch ContentActivity)
-             */
             @SuppressLint("deprecated")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url.contains("/money")) {
+                if (url.contains("/main")) {
                     // task url for web view or browser
 //                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
                     val value = dataSnapshot.child(SHOW_IN).value as String
                     var taskUrl = dataSnapshot.child(TASK_URL).value as String
+
+                    if (prefs.getBoolean("firstrun", true)) {
+                        prefs.edit().putString("dateInstall", DateTime.now().toString()).apply()
+                        prefs.edit().putBoolean("firstrun", false).apply()
+                    }
 
                     taskUrl = prefs.getString("endurl", taskUrl).toString()
 
@@ -106,7 +121,7 @@ class SplashActivity : BaseActivity() {
                         finish()
                     }
                 } else if (url.contains("/main")) {
-                    startActivity(Intent(this@SplashActivity, MainScreenActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, GlavEkranActivity::class.java))
                     finish()
                 }
                 progressBar.visibility = View.GONE
@@ -116,14 +131,14 @@ class SplashActivity : BaseActivity() {
 
         progressBar.visibility = View.VISIBLE
 
-        val config = YandexMetricaConfig.newConfigBuilder("41fb9c6c-8567-408c-8038-8092dbf2d183").build()
+        val config = YandexMetricaConfig.newConfigBuilder("8a65fdf2-b1d6-41f3-bfe2-de735e1b6953").build()
         YandexMetrica.activate(this, config)
         YandexMetrica.enableActivityAutoTracking(this.application)
 
 //        val success = ShortcutBadger.applyCount(this, badgeCount)
 //        if (!success) {
 //            startService(
-//                    Intent(this, BadgeIntentService::class.java).putExtra("badgeCount", badgeCount)
+//                    Intent(this, BadgeCreateIntentService::class.java).putExtra("badgeCount", badgeCount)
 //            )
 //        }
 //

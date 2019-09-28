@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.activities;
+package com.datingapp.reallove.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.datingapp.casualchat.R;
+import com.datingapp.reallove.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -22,20 +22,20 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class MainScreenActivity extends AppCompatActivity implements View.OnClickListener {
+public class GlavEkranActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mCreateAccountBtn;
-    private Button mSignInBtn;
+    private Button sozdatAccButton;
+    private Button voytiButton;
     private View mView1;
     private LinearLayout mSignInLinearLayout;
-    private LoginButton mButtonFacebookLogin;
+    private LoginButton vhodFacebookButton;
     private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main_screen);
+        setContentView(R.layout.activity_glav_ekran);
         initView();
         callbackManager = CallbackManager.Factory.create();
 
@@ -51,16 +51,16 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
 
     private void initView() {
 
-        mCreateAccountBtn = (Button) findViewById(R.id.btn_create_account);
-        mCreateAccountBtn.setOnClickListener(this);
-        mSignInBtn = (Button) findViewById(R.id.btn_sign_in);
-        mSignInBtn.setOnClickListener(this);
-        mView1 = (View) findViewById(R.id.view1);
-        mSignInLinearLayout = (LinearLayout) findViewById(R.id.linearLayout_sign_in);
-        mButtonFacebookLogin = (LoginButton) findViewById(R.id.login_button_facebook);
-        mButtonFacebookLogin.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
+        sozdatAccButton =  findViewById(R.id.main_screen_create_acc_button);
+        sozdatAccButton.setOnClickListener(this);
+        voytiButton =  findViewById(R.id.main_screen_sign_in_button);
+        voytiButton.setOnClickListener(this);
+        mView1 =  findViewById(R.id.view1);
+        mSignInLinearLayout =  findViewById(R.id.linearLayout_sign_in);
+        vhodFacebookButton =  findViewById(R.id.lizo_kniga_button);
+        vhodFacebookButton.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
 
-        mButtonFacebookLogin.setOnClickListener(this);
+        vhodFacebookButton.setOnClickListener(this);
     }
 
     @Override
@@ -70,17 +70,17 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         Intent intent;
         switch (v.getId()) {
 
-            case R.id.btn_create_account:
-                intent = new Intent(this, SignInPageActivity.class);
+            case R.id.main_screen_create_acc_button:
+                intent = new Intent(this, VhodStranicaActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btn_sign_in:
-                intent = new Intent(this, SignInPageActivity.class);
+            case R.id.main_screen_sign_in_button:
+                intent = new Intent(this, VhodStranicaActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.login_button_facebook:
+            case R.id.lizo_kniga_button:
 
-                mButtonFacebookLogin.registerCallback(callbackManager,
+                vhodFacebookButton.registerCallback(callbackManager,
                         new FacebookCallback<LoginResult>() {
                             @Override
                             public void onSuccess(LoginResult loginResult) {
@@ -116,7 +116,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                             String email = response.getJSONObject().getString("email");
                             String firstName = response.getJSONObject().getString("first_name");
                             Intent intent1;
-                            intent1 = new Intent(getApplicationContext(), RegistrationPageActivity.class);
+                            intent1 = new Intent(getApplicationContext(), RegStranicaActivity.class);
                             startActivity(intent1);
                             finish();
 

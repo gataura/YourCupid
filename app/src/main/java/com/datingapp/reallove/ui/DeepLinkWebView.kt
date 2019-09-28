@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.ui
+package com.datingapp.reallove.ui
 
 
 
@@ -24,9 +24,9 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.datingapp.casualchat.Conversion
-import com.datingapp.casualchat.R
-import com.datingapp.casualchat._core.BaseActivity
+import com.datingapp.reallove.Conversion
+import com.datingapp.reallove.R
+import com.datingapp.reallove._core.BaseActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_web_view.*
@@ -60,7 +60,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     override fun initUI() {
         webView = web_view
         progressBar = progress_bar
-        prefs = getSharedPreferences("com.dating.relations", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("com.datingapp.reallove", Context.MODE_PRIVATE)
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 

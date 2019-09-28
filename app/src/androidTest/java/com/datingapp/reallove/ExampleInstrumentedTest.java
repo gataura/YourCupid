@@ -1,4 +1,4 @@
-package com.datingapp.casualchat;
+package com.datingapp.reallove;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

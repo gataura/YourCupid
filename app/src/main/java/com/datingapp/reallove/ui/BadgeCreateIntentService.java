@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.ui;
+package com.datingapp.reallove.ui;
 
 import android.annotation.TargetApi;
 import android.app.IntentService;
@@ -9,18 +9,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import com.datingapp.casualchat.R;
+import com.datingapp.reallove.R;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
-public class BadgeIntentService extends IntentService {
+public class BadgeCreateIntentService extends IntentService {
 
     private static final String NOTIFICATION_CHANNEL = "com.newapp2.datingapp";
 
     private int notificationId = 0;
 
-    public BadgeIntentService() {
-        super("BadgeIntentService");
+    public BadgeCreateIntentService() {
+        super("BadgeCreateIntentService");
     }
 
     private NotificationManager mNotificationManager;

@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.activities;
+package com.datingapp.reallove.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,13 +12,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.datingapp.casualchat.R;
+import com.datingapp.reallove.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GlavnayaActivity extends AppCompatActivity {
 
-    private RadioButton manAnswer;
-    private RadioButton womanAnswer;
-    private Button btnContinue;
+    private RadioButton maleAnswer;
+    private RadioButton femaleAnswer;
+    private Button knopkaContinue;
     private TextView text;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
 
@@ -28,22 +28,22 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_glavnaya);
 
-        manAnswer = findViewById(R.id.btn_man_answer);
-        womanAnswer = findViewById(R.id.btn_woman_answer);
-        btnContinue = findViewById(R.id.btn_continue);
-        text = findViewById(R.id.text_main);
+        maleAnswer = findViewById(R.id.male_chose_gender);
+        femaleAnswer = findViewById(R.id.female_chose_gender);
+        knopkaContinue = findViewById(R.id.select_gender_next_button);
+        text = findViewById(R.id.text_select_your_gender);
 
         setTypefaces();
 
         final String checkFlag = getIntent().getStringExtra("flag");
 
-        final Intent intent = new Intent(this, LookingActivity.class);
-        btnContinue.setOnClickListener(new View.OnClickListener() {
+        final Intent intent = new Intent(this, CheIsheshActivity.class);
+        knopkaContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (manAnswer.isChecked() || womanAnswer.isChecked()) {
+                if (maleAnswer.isChecked() || femaleAnswer.isChecked()) {
                     intent.putExtra("flag", checkFlag);
                     startActivity(intent);
                 } else {
@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), FONT_PATH);
         text.setTypeface(typeface);
-        btnContinue.setTypeface(typeface);
-        manAnswer.setTypeface(typeface);
-        womanAnswer.setTypeface(typeface);
+        knopkaContinue.setTypeface(typeface);
+        maleAnswer.setTypeface(typeface);
+        femaleAnswer.setTypeface(typeface);
     }
 
 }

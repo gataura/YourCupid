@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.datingapp.casualchat">
+    package="com.datingapp.reallove">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.datingapp.casualchat.activities.MainScreenActivity"/>
+        <activity android:name="com.datingapp.reallove.activities.GlavEkranActivity"/>
 
         <service
-            android:name="com.datingapp.casualchat.ui.BadgeIntentService"
+            android:name="com.datingapp.reallove.ui.BadgeCreateIntentService"
             android:exported="false" />
 
         <meta-data
@@ -42,17 +42,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.datingapp.casualchat.activities.MainActivity" />
+            android:name="com.datingapp.reallove.activities.GlavnayaActivity" />
         <activity
-            android:name="com.datingapp.casualchat.activities.LookingActivity" />
+            android:name="com.datingapp.reallove.activities.CheIsheshActivity" />
         <activity
-            android:name="com.datingapp.casualchat.activities.RegistrationPageActivity" />
+            android:name="com.datingapp.reallove.activities.RegStranicaActivity" />
         <activity
-            android:name="com.datingapp.casualchat.activities.SignInPageActivity" />
+            android:name="com.datingapp.reallove.activities.VhodStranicaActivity" />
         <activity
-            android:name="com.datingapp.casualchat.activities.ResultActivity" />
+            android:name="com.datingapp.reallove.activities.ResultActivity" />
         <activity
-            android:name="com.datingapp.casualchat.ui.SplashActivity"
+            android:name="com.datingapp.reallove.ui.SplashActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,14 +61,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.datingapp.casualchat.ui.WebViewActivity"
+            android:name="com.datingapp.reallove.ui.WebViewActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.datingapp.casualchat.ui.ContentActivity"
+            android:name="com.datingapp.reallove.ui.ContentActivity"
             android:launchMode="singleTask" />
 
         <activity
-            android:name="com.datingapp.casualchat.ui.DeepLinkWebView"
+            android:name="com.datingapp.reallove.ui.DeepLinkWebView"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:autoVerify="true">

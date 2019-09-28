@@ -1,7 +1,7 @@
-package com.datingapp.casualchat.ui
+package com.datingapp.reallove.ui
 
-import com.datingapp.casualchat.R
-import com.datingapp.casualchat._core.BaseActivity
+import com.datingapp.reallove.R
+import com.datingapp.reallove._core.BaseActivity
 
 
 /**

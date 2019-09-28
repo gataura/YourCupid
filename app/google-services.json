@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "732736397445",
-    "firebase_url": "https://chattingden.firebaseio.com",
-    "project_id": "chattingden",
-    "storage_bucket": "chattingden.appspot.com"
+    "project_number": "17614450968",
+    "firebase_url": "https://reallovenikolay.firebaseio.com",
+    "project_id": "reallovenikolay",
+    "storage_bucket": "reallovenikolay.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:732736397445:android:a9861312fa8d2aeef389ec",
+        "mobilesdk_app_id": "1:17614450968:android:46393c661177a3132c2e6d",
         "android_client_info": {
-          "package_name": "com.datingapp.casualchat"
+          "package_name": "com.datingapp.reallove"
         }
       },
       "oauth_client": [
         {
-          "client_id": "732736397445-59k3v8pa5s54m7qgjrpb71e1brmi4g92.apps.googleusercontent.com",
+          "client_id": "17614450968-eetlsprcbqanvbs91lvv72m8j11adrmu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBgzImfzrMJ1dP4jOwikxwOco88fNOpJZY"
+          "current_key": "AIzaSyDnWZodvpbuPjI8EAfdfaWcRdgtjx17z6k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "732736397445-59k3v8pa5s54m7qgjrpb71e1brmi4g92.apps.googleusercontent.com",
+              "client_id": "17614450968-eetlsprcbqanvbs91lvv72m8j11adrmu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

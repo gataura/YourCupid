@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.ui
+package com.datingapp.reallove.ui
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
@@ -19,9 +19,9 @@ import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
 import androidx.core.app.ActivityCompat
-import com.datingapp.casualchat.EXTRA_TASK_URL
-import com.datingapp.casualchat.R
-import com.datingapp.casualchat._core.BaseActivity
+import com.datingapp.reallove.EXTRA_TASK_URL
+import com.datingapp.reallove.R
+import com.datingapp.reallove._core.BaseActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_web_view.*
@@ -61,7 +61,7 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
 
         firebaseAnalytic = FirebaseAnalytics.getInstance(this)
 
-        prefs = getSharedPreferences("com.datingapp.casualchat", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("com.datingapp.reallove", Context.MODE_PRIVATE)
     }
 
     override fun setUI() {

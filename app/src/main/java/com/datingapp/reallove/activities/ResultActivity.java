@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.activities;
+package com.datingapp.reallove.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.datingapp.casualchat.R;
+import com.datingapp.reallove.R;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -24,11 +24,11 @@ public class ResultActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_result);
 
-        text = findViewById(R.id.text_result);
+        text = findViewById(R.id.last_text_result);
         setTypefaces();
 
         checkFlag = getIntent().getStringExtra("flag");
-        if (checkFlag.equals("SignInPageActivity")) {
+        if (checkFlag.equals("VhodStranicaActivity")) {
             text.setText(R.string.text_sign_in);
         } else
             text.setText(R.string.text_success_registration);

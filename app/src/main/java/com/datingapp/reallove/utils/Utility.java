@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.utils;
+package com.datingapp.reallove.utils;
 
 import android.Manifest;
 import android.annotation.TargetApi;

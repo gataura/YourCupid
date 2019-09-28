@@ -1,4 +1,4 @@
-package com.datingapp.casualchat.activities;
+package com.datingapp.reallove.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,16 +12,16 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.datingapp.casualchat.R;
+import com.datingapp.reallove.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class RegistrationPageActivity extends AppCompatActivity {
+public class RegStranicaActivity extends AppCompatActivity {
 
-    private EditText textLogin;
-    private EditText textPassword;
-    private EditText textEmail;
+    private EditText editTextVoyti;
+    private EditText etPass;
+    private EditText etEmail;
     private DatePicker datePicker;
     private Button btnRegister;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
@@ -32,23 +32,23 @@ public class RegistrationPageActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_registration_page);
+        setContentView(R.layout.activity_reg_stranica);
 
-        textLogin = findViewById(R.id.etLogin);
-        textPassword = findViewById(R.id.etPassword);
-        textEmail = findViewById(R.id.etEmail);
-        btnRegister = findViewById(R.id.btn_register);
-        datePicker = findViewById(R.id.datePicker);
+        editTextVoyti = findViewById(R.id.type_info_login_et);
+        etPass = findViewById(R.id.type_info_password_et);
+        etEmail = findViewById(R.id.type_info_email_et);
+        btnRegister = findViewById(R.id.type_info_register_button);
+        datePicker = findViewById(R.id.type_info_date_picker);
 
         setTypefaces();
 
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, GlavnayaActivity.class);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!textLogin.getText().toString().equals("") || !textPassword.getText().toString().equals("")
-                        || !textEmail.getText().toString().equals("")){
-                    intent.putExtra("flag", "RegistrationPageActivity");
+                if (!editTextVoyti.getText().toString().equals("") || !etPass.getText().toString().equals("")
+                        || !etEmail.getText().toString().equals("")){
+                    intent.putExtra("flag", "RegStranicaActivity");
                     startActivity(intent);
                 }else {
                     Toast.makeText(getApplicationContext(),
@@ -71,9 +71,9 @@ public class RegistrationPageActivity extends AppCompatActivity {
 
     private void setTypefaces() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), FONT_PATH);
-        textLogin.setTypeface(typeface);
-        textPassword.setTypeface(typeface);
-        textEmail.setTypeface(typeface);
+        editTextVoyti.setTypeface(typeface);
+        etPass.setTypeface(typeface);
+        etEmail.setTypeface(typeface);
         btnRegister.setTypeface(typeface);
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Сhatting and Dating</string>
+    <string name="app_name">Real Love</string>
     <string name="choose_your_gender">Укажите ваш пол!</string>
     <string name="man_answer">Мужчину</string>
     <string name="man_answer_main">Мужчина</string>
@@ -18,8 +18,8 @@
     <string name="text_success_registration">Ваша регистрация прошла успешно, мы выслали вам письмо на почту для подтверждения.</string>
     <string name="text_sign_in">Вы успешно авторизовались.</string>
     <string name="empty_text">   </string>
-    <string name="facebook_app_id">2544593102436865</string>
-    <string name="fb_login_protocol_scheme">fb2544593102436865</string>
+    <string name="facebook_app_id">1140728506273201</string>
+    <string name="fb_login_protocol_scheme">fb1140728506273201</string>
     <string name="less_twenty_five">меньше 25</string>
     <string name="twenty_five_nine">25-29</string>
     <string name="more_thirty">больше 30</string>

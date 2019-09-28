@@ -1,15 +1,15 @@
-package com.datingapp.casualchat._core
+package com.datingapp.reallove._core
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.datingapp.casualchat.BuildConfig
+import com.datingapp.reallove.BuildConfig
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.database.*
-import com.datingapp.casualchat.R
+import com.datingapp.reallove.R
 
 
 /**

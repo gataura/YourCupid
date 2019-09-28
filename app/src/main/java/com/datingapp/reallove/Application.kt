@@ -1,4 +1,4 @@
-package com.datingapp.casualchat
+package com.datingapp.reallove
 
 import android.app.Application
 import com.google.firebase.FirebaseApp
