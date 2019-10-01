@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "17614450968",
-    "firebase_url": "https://reallovenikolay.firebaseio.com",
-    "project_id": "reallovenikolay",
-    "storage_bucket": "reallovenikolay.appspot.com"
+    "project_number": "726652740186",
+    "firebase_url": "https://onenightfriends.firebaseio.com",
+    "project_id": "onenightfriends",
+    "storage_bucket": "onenightfriends.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:17614450968:android:46393c661177a3132c2e6d",
+        "mobilesdk_app_id": "1:726652740186:android:b621b7bf9a4b3967dbee63",
         "android_client_info": {
-          "package_name": "com.datingapp.reallove"
+          "package_name": "com.onenight.friends"
         }
       },
       "oauth_client": [
         {
-          "client_id": "17614450968-eetlsprcbqanvbs91lvv72m8j11adrmu.apps.googleusercontent.com",
+          "client_id": "726652740186-44vca60su445j9d1gse6jm2gd745ej6s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDnWZodvpbuPjI8EAfdfaWcRdgtjx17z6k"
+          "current_key": "AIzaSyBKKjNlWcTLy2zNm6nsK66u8oXRRoEpiEY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "17614450968-eetlsprcbqanvbs91lvv72m8j11adrmu.apps.googleusercontent.com",
+              "client_id": "726652740186-44vca60su445j9d1gse6jm2gd745ej6s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

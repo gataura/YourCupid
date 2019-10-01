@@ -8,7 +8,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.datingapp.reallove"
+        applicationId "com.onenight.friends"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
 
         manifestPlaceholders = [
-                onesignal_app_id: '4be02dcd-53f1-4b34-bd31-1f6a58e8f052',
+                onesignal_app_id: '6d7cfbd6-d7e5-4d17-a526-9a35a8dace5c',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
