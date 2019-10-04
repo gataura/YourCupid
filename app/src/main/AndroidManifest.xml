@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.onenight.friends">
+    package="com.your.cupid">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,10 +15,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.onenight.friends.activities.MainEkranActivity"/>
+        <activity android:name="com.your.cupid.activities.MainEkranActivity"/>
 
         <service
-            android:name="com.onenight.friends.ui.BadgeCreateIntentService"
+            android:name=".MyFirebaseInstanceService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.your.cupid.ReferrerDataReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+
+        <service
+            android:name="com.your.cupid.ui.BadgeCreateIntentService"
             android:exported="false" />
 
         <meta-data
@@ -42,17 +60,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.onenight.friends.activities.TipaMainActivity" />
+            android:name="com.your.cupid.activities.TipaMainActivity" />
         <activity
-            android:name="com.onenight.friends.activities.WhatAreYouIsheshForActivity" />
+            android:name="com.your.cupid.activities.WhatAreYouIsheshForActivity" />
         <activity
-            android:name="com.onenight.friends.activities.RegisterPageActivity" />
+            android:name="com.your.cupid.activities.RegisterPageActivity" />
         <activity
-            android:name="com.onenight.friends.activities.VhodStranicaActivity" />
+            android:name="com.your.cupid.activities.VhodStranicaActivity" />
         <activity
-            android:name="com.onenight.friends.activities.RezultatActivity" />
+            android:name="com.your.cupid.activities.RezultatActivity" />
         <activity
-            android:name="com.onenight.friends.ui.SplashActivity"
+            android:name="com.your.cupid.ui.SplashActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,14 +79,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.onenight.friends.ui.WebViewActivity"
+            android:name="com.your.cupid.ui.WebViewActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.onenight.friends.ui.ContentActivity"
+            android:name="com.your.cupid.ui.ContentActivity"
             android:launchMode="singleTask" />
 
         <activity
-            android:name="com.onenight.friends.ui.DeepLinkWebView"
+            android:name="com.your.cupid.ui.DeepLinkWebView"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:autoVerify="true">

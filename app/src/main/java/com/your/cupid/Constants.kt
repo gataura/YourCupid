@@ -1,9 +1,7 @@
-package com.onenight.friends
+package com.your.cupid
 
 
-/**
- * Created by Andriy Deputat email(andriy.deputat@gmail.com) on 3/13/19.
- */
+
 // Firebase Remote config keys
 const val SPLASH_URL = "splash_url"
 const val TASK_URL = "task_url"

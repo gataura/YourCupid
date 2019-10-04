@@ -1,7 +1,7 @@
-package com.onenight.friends.ui
+package com.your.cupid.ui
 
-import com.onenight.friends.R
-import com.onenight.friends._core.BaseActivity
+import com.your.cupid.R
+import com.your.cupid._core.BaseActivity
 
 
 /**

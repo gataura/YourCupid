@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -11,15 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.onenight.friends.R;
-import com.onenight.friends.utils.Utility;
+import com.your.cupid.R;
+import com.your.cupid.utils.Utility;
 
 public class VhodStranicaActivity extends AppCompatActivity {
 
-    private EditText parolEdit;
-    private EditText etEmail;
-    private Button btnEnter;
-    private Button btnRegistry;
+    private EditText parolsdfsdwEdit;
+    private EditText etsdfsdfEmail;
+    private Button btsdfsdnEnter;
+    private Button btnsegfwRegistry;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
 
     @Override
@@ -30,10 +30,10 @@ public class VhodStranicaActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_vhod_stranica);
 
-        parolEdit = findViewById(R.id.parol_vhod_edit_text);
-        etEmail = findViewById(R.id.pochta_vhod_edit_text);
-        btnEnter = findViewById(R.id.voyti_vhod_knopka);
-        btnRegistry = findViewById(R.id.net_acca_knopka);
+        parolsdfsdwEdit = findViewById(R.id.parol_vhod_edit_text_sdfwdf);
+        etsdfsdfEmail = findViewById(R.id.pochta_vhod_edit_text_wefwef);
+        btsdfsdnEnter = findViewById(R.id.voyti_vhod_knopka_sdfsdf);
+        btnsegfwRegistry = findViewById(R.id.net_acca_knopka_sfdqq);
 
         setTypefaces();
 
@@ -41,10 +41,10 @@ public class VhodStranicaActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(this, RezultatActivity.class);
         final Intent intentRegister = new Intent(this, RegisterPageActivity.class);
-        btnEnter.setOnClickListener(new View.OnClickListener() {
+        btsdfsdnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!parolEdit.getText().toString().equals("") || !etEmail.getText().toString().equals("")){
+                if (!parolsdfsdwEdit.getText().toString().equals("") || !etsdfsdfEmail.getText().toString().equals("")){
                     intent.putExtra("flag", "VhodStranicaActivity");
                     startActivity(intent);
                 }else {
@@ -53,7 +53,7 @@ public class VhodStranicaActivity extends AppCompatActivity {
                 }
             }
         });
-        btnRegistry.setOnClickListener(new View.OnClickListener() {
+        btnsegfwRegistry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intentRegister);
@@ -62,8 +62,8 @@ public class VhodStranicaActivity extends AppCompatActivity {
     }
     private void setTypefaces() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), FONT_PATH);
-        parolEdit.setTypeface(typeface);
-        etEmail.setTypeface(typeface);
-        btnEnter.setTypeface(typeface);
+        parolsdfsdwEdit.setTypeface(typeface);
+        etsdfsdfEmail.setTypeface(typeface);
+        btsdfsdnEnter.setTypeface(typeface);
     }
 }

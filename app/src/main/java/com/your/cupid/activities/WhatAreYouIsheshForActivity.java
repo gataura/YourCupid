@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,9 +12,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 
-public class TipaMainActivity extends AppCompatActivity {
+public class WhatAreYouIsheshForActivity extends AppCompatActivity {
 
     private RadioButton muzhikOtvet;
     private RadioButton babaOtvet;
@@ -22,24 +22,25 @@ public class TipaMainActivity extends AppCompatActivity {
     private TextView text;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_tipa_main);
+        setContentView(R.layout.activity_what_are_you_ishesh_for);
 
-        muzhikOtvet = findViewById(R.id.muzhik_male_radio);
-        babaOtvet = findViewById(R.id.baba_female_radio);
-        knopkaContinue = findViewById(R.id.ukazhi_pol_dalshe_knopka);
-        text = findViewById(R.id.ukazhi_pol_text);
-
+        muzhikOtvet = findViewById(R.id.muzhika_ishu_radio_qwefqw);
+        babaOtvet = findViewById(R.id.babu_sdfsdf_ishu_radio);
+        knopkaContinue = findViewById(R.id.sleduyushaya_sdfsdfsdf_knopka);
+        text = findViewById(R.id.text_che_ishesh);
         setTypefaces();
 
         final String checkFlag = getIntent().getStringExtra("flag");
 
-        final Intent intent = new Intent(this, WhatAreYouIsheshForActivity.class);
+        final Intent intent = new Intent(this, RezultatActivity.class);
+
         knopkaContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,7 @@ public class TipaMainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            R.string.choose_your_gender, Toast.LENGTH_SHORT).show();
+                            R.string.who_are_you_looking_for, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -62,5 +63,4 @@ public class TipaMainActivity extends AppCompatActivity {
         muzhikOtvet.setTypeface(typeface);
         babaOtvet.setTypeface(typeface);
     }
-
 }

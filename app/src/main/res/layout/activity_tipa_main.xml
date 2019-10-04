@@ -35,7 +35,7 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/muzhik_male_radio"
+                android:id="@+id/muzhik_male_sdfwdf_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -43,7 +43,7 @@
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/baba_female_radio"
+                android:id="@+id/baba_female_wefd_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -53,7 +53,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/ukazhi_pol_dalshe_knopka"
+            android:id="@+id/ukazhi_pol_sdfsdf_dalshe_knopka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/purple_50"

@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 
 public class RezultatActivity extends AppCompatActivity {
 

@@ -1,15 +1,15 @@
-package com.onenight.friends._core
+package com.your.cupid._core
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.onenight.friends.BuildConfig
+import com.your.cupid.BuildConfig
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.database.*
-import com.onenight.friends.R
+import com.your.cupid.R
 
 
 /**

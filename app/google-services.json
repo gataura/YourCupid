@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "726652740186",
-    "firebase_url": "https://onenightfriends.firebaseio.com",
-    "project_id": "onenightfriends",
-    "storage_bucket": "onenightfriends.appspot.com"
+    "project_number": "332520428490",
+    "firebase_url": "https://yourcupid-906b8.firebaseio.com",
+    "project_id": "yourcupid-906b8",
+    "storage_bucket": "yourcupid-906b8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:726652740186:android:b621b7bf9a4b3967dbee63",
+        "mobilesdk_app_id": "1:332520428490:android:9f3336b747cb4cd3373533",
         "android_client_info": {
-          "package_name": "com.onenight.friends"
+          "package_name": "com.your.cupid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "726652740186-44vca60su445j9d1gse6jm2gd745ej6s.apps.googleusercontent.com",
+          "client_id": "332520428490-1hlucsssj03c77l14qdr9ivs65q408o2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKKjNlWcTLy2zNm6nsK66u8oXRRoEpiEY"
+          "current_key": "AIzaSyD_TOABmmH_oe5o3vCfWuLndFX0KL18-pE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "726652740186-44vca60su445j9d1gse6jm2gd745ej6s.apps.googleusercontent.com",
+              "client_id": "332520428490-1hlucsssj03c77l14qdr9ivs65q408o2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

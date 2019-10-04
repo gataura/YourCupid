@@ -1,4 +1,4 @@
-package com.onenight.friends;
+package com.your.cupid;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.onenight.friends
+package com.your.cupid
 
 import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.database.PropertyName

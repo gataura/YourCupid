@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,16 +12,15 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 
-public class WhatAreYouIsheshForActivity extends AppCompatActivity {
+public class TipaMainActivity extends AppCompatActivity {
 
-    private RadioButton muzhikOtvet;
-    private RadioButton babaOtvet;
-    private Button knopkaContinue;
+    private RadioButton muzhikOtvetsdfsdf;
+    private RadioButton babadfsdfOtvet;
+    private Button knopkasdfsdfContinue;
     private TextView text;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +28,27 @@ public class WhatAreYouIsheshForActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_what_are_you_ishesh_for);
+        setContentView(R.layout.activity_tipa_main);
 
-        muzhikOtvet = findViewById(R.id.muzhika_ishu_radio);
-        babaOtvet = findViewById(R.id.babu_ishu_radio);
-        knopkaContinue = findViewById(R.id.sleduyushaya_knopka);
-        text = findViewById(R.id.text_che_ishesh);
+        muzhikOtvetsdfsdf = findViewById(R.id.muzhik_male_sdfwdf_radio);
+        babadfsdfOtvet = findViewById(R.id.baba_female_wefd_radio);
+        knopkasdfsdfContinue = findViewById(R.id.ukazhi_pol_sdfsdf_dalshe_knopka);
+        text = findViewById(R.id.ukazhi_pol_text);
+
         setTypefaces();
 
         final String checkFlag = getIntent().getStringExtra("flag");
 
-        final Intent intent = new Intent(this, RezultatActivity.class);
-
-        knopkaContinue.setOnClickListener(new View.OnClickListener() {
+        final Intent intent = new Intent(this, WhatAreYouIsheshForActivity.class);
+        knopkasdfsdfContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (muzhikOtvet.isChecked() || babaOtvet.isChecked()) {
+                if (muzhikOtvetsdfsdf.isChecked() || babadfsdfOtvet.isChecked()) {
                     intent.putExtra("flag", checkFlag);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            R.string.who_are_you_looking_for, Toast.LENGTH_SHORT).show();
+                            R.string.choose_your_gender, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -59,8 +58,9 @@ public class WhatAreYouIsheshForActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), FONT_PATH);
         text.setTypeface(typeface);
-        knopkaContinue.setTypeface(typeface);
-        muzhikOtvet.setTypeface(typeface);
-        babaOtvet.setTypeface(typeface);
+        knopkasdfsdfContinue.setTypeface(typeface);
+        muzhikOtvetsdfsdf.setTypeface(typeface);
+        babadfsdfOtvet.setTypeface(typeface);
     }
+
 }

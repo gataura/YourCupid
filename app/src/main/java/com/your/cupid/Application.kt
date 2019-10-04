@@ -1,4 +1,4 @@
-package com.onenight.friends
+package com.your.cupid
 
 import android.app.Application
 import com.google.firebase.FirebaseApp

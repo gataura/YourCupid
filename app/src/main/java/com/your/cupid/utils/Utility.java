@@ -1,4 +1,4 @@
-package com.onenight.friends.utils;
+package com.your.cupid.utils;
 
 import android.Manifest;
 import android.annotation.TargetApi;

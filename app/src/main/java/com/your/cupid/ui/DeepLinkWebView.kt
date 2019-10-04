@@ -1,4 +1,6 @@
-package com.onenight.friends.ui
+package com.your.cupid.ui
+
+
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
@@ -14,22 +16,22 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.core.app.ActivityCompat
 import android.util.Log
 import android.view.View
-import android.webkit.*
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import androidx.core.app.ActivityCompat
-import com.onenight.friends.EXTRA_TASK_URL
-import com.onenight.friends.R
-import com.onenight.friends._core.BaseActivity
+import com.your.cupid.Conversion
+import com.your.cupid.R
+import com.your.cupid._core.BaseActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_web_view.*
-import org.joda.time.DateTime
-import org.joda.time.Minutes
 import java.io.File
 import java.io.IOException
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +39,8 @@ import java.util.*
 /**
  * Created by Andriy Deputat email(andriy.deputat@gmail.com) on 3/13/19.
  */
-class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
+
+class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
 
     lateinit var webView: WebView
     lateinit var progressBar: ProgressBar
@@ -46,32 +49,39 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
     var mCameraPhotoPath: String? = null
     val PERMISSION_CODE = 1000
     var size: Long = 0
-
-    lateinit var firebaseAnalytic: FirebaseAnalytics
-
-    var minutesToday = 0
-
+    lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var prefs: SharedPreferences
+    val REFERRER_DATA = "REFERRER_DATA"
+    var gclid: String? = null
+
 
     override fun getContentView(): Int = R.layout.activity_web_view
 
     override fun initUI() {
         webView = web_view
         progressBar = progress_bar
-
-        firebaseAnalytic = FirebaseAnalytics.getInstance(this)
-
-        prefs = getSharedPreferences("com.bestmatch.foryou", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("com.datingapp.reallove", Context.MODE_PRIVATE)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 
+    private var conversions: MutableList<Conversion> = mutableListOf()
     override fun setUI() {
+       /* getValuesFromDatabase({ dataSnapshot ->
+            val values = dataSnapshot.child(CONVERSION_DATA)
+            for (conversionSnapshot in values.children) {
+                val conversion = conversionSnapshot.getValue(Conversion::class.java)
+                conversion?.conversionEvent = conversionSnapshot.key!!
+                conversion?.let { conversions.add(it) }
+            }
+
+            webView.loadUrl(intent?.data.toString())
+        })*/
+        webView.loadUrl(intent?.data.toString())
         logEvent("web-view-screen")
         progressBar.visibility = View.VISIBLE
 
         configureWebView()
 
-            webView.loadUrl(intent.getStringExtra(EXTRA_TASK_URL))
-            //webView.loadUrl("https://en.imgbb.com/")
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -86,13 +96,19 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
         )
     }
 
-    fun verifyStoragePermissions(activity:Activity) {
+    fun verifyStoragePermissions(activity: Activity) {
 
-        var writePermission = ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        var readPermission = ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        var writePermission =
+            ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        var readPermission =
+            ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE)
         var cameraPermission = ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA)
 
-        var permission = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        var permission = arrayOf(
+            android.Manifest.permission.CAMERA,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
         if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED || cameraPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, permission, PERMISSION_CODE)
         }
@@ -156,40 +172,53 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun configureWebView() {
+        webView.settings.builtInZoomControls = true
+        webView.settings.domStorageEnabled = true
+        webView.setInitialScale(1)
+        webView.settings.setAppCacheEnabled(false)
         webView.settings.allowFileAccess = true
         webView.settings.javaScriptEnabled = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
         webView.settings.javaScriptCanOpenWindowsAutomatically = true
-        webView.settings.builtInZoomControls = true
-        webView.settings.displayZoomControls = false
-        webView.settings.setRenderPriority(WebSettings.RenderPriority.HIGH)
-        webView.settings.setAppCacheEnabled(true)
-        webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-        webView.settings.domStorageEnabled = true
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
-        webView.settings.useWideViewPort = true
-        webView.settings.savePassword = true
-        webView.settings.saveFormData = true
-        webView.settings.setEnableSmoothTransition(true)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        } else {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-        }
         webView.webChromeClient = PQChromeClient()
         webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView, url: String) {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                // TODO: add values to determine if url is for conversion response, you can add these values to firebase database
+                /*url?.let { urlSafe ->
+                    logEventIfUrlIsSuitable(urlSafe)
+                }*/
+
                 progressBar.visibility = View.GONE
             }
+        }
+
+
+        if (prefs.getBoolean("firstrun",true)) {
+            val bundle = Bundle()
+            firebaseAnalytics.logEvent("reg_open", bundle)
+            prefs.edit().putBoolean("firstrun", false).apply()
         }
         verifyStoragePermissions(this)
     }
 
+    private fun logEventIfUrlIsSuitable(urlSafe: String) {
+        conversions.forEach {
+            if (urlSafe.contains(it.offerId!!) && (urlSafe.contains(it.l!!))) {
+                val uri = Uri.parse(urlSafe)
+                val args = uri.queryParameterNames
+                val bundle = Bundle()
+
+                /*args.forEach { key ->
+                    bundle.putString(key, uri.getQueryParameter(key))
+                }*/
+
+            }
+        }
+    }
 
     override fun onBackPressed() {
-        if(webView.canGoBack()) {
+        if (webView.canGoBack()) {
             webView.goBack()
         } else {
             super.onBackPressed()
@@ -207,42 +236,31 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
     }
 
 
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        if (data != null || mCameraPhotoPath != null)
-        {
+        if (data != null || mCameraPhotoPath != null) {
             var count = 0 //fix fby https://github.com/nnian
-            var images:ClipData? = null
-            try
-            {
+            var images: ClipData? = null
+            try {
                 images = data?.clipData
-            }
-            catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.e("Error!", e.localizedMessage)
             }
-            if (images == null && data != null && data.dataString != null)
-            {
-                count = data.dataString!!.length
-            }
-            else if (images != null)
-            {
-                count = images.getItemCount()
+            if (images == null && data != null && data.dataString != null) {
+                count = data.dataString.length
+            } else if (images != null) {
+                count = images.itemCount
             }
             var results = arrayOfNulls<Uri>(count)
             // Check that the response is a good one
-            if (resultCode === Activity.RESULT_OK)
-            {
-                if (size !== 0L)
-                {
+            if (resultCode === Activity.RESULT_OK) {
+                if (size !== 0L) {
                     // If there is not data, then we may have taken a photo
-                    if (mCameraPhotoPath != null)
-                    {
+                    if (mCameraPhotoPath != null) {
                         results = arrayOf(Uri.parse(mCameraPhotoPath))
                     }
-                }
-                else if (data != null) {
+                } else if (data != null) {
                     if (data.clipData == null) {
                         results = arrayOf(Uri.parse(data.dataString))
                     } else {
@@ -260,37 +278,6 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
 
     }
 
-    fun makeFirstDay(startTime: DateTime) {
-        minutesToday += Minutes.minutesBetween(startTime, DateTime.now()).minutes
-         if (minutesToday >= 1) {
-            if (!prefs.getBoolean("gtuToday", false)) {
-                prefs.edit().putString("gtu", "GTU").apply()
-                val gtuOneBundle = Bundle()
-                gtuOneBundle.putString("GTU", "GTU")
-
-                firebaseAnalytic.logEvent("GTU", gtuOneBundle)
-                prefs.edit().putBoolean("gtuToday", true).apply()
-            }
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        minutesToday = prefs.getString("minutesToday", "0")!!.toInt()
-
-
-        if (prefs.getString("sessionTime", "") != "") {
-            val startTime = DateTime(prefs.getString("sessionTime", ""))
-            makeFirstDay(startTime)
-        }
-
-
-        prefs.edit().putString("minutesToday", minutesToday.toString()).apply()
-
-        prefs.edit().putString("endurl", webView.url).apply()
-
-    }
 
     override fun onPageFinished(url: String?) {
     }

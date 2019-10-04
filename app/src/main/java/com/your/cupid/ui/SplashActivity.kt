@@ -1,19 +1,23 @@
-package com.onenight.friends.ui
+package com.your.cupid.ui
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.onenight.friends.*
-import com.onenight.friends._core.BaseActivity
-import com.onenight.friends.activities.MainEkranActivity
+import com.your.cupid.*
+import com.your.cupid._core.BaseActivity
+import com.your.cupid.activities.MainEkranActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -26,9 +30,7 @@ import org.joda.time.DateTime
 import org.joda.time.Days
 
 
-/**
- * Created by Andriy Deputat email(andriy.deputat@gmail.com) on 3/13/19.
- */
+
 class SplashActivity : BaseActivity() {
 
     private lateinit var webView: WebView
@@ -54,7 +56,7 @@ class SplashActivity : BaseActivity() {
 
         firebaseAnalytic = FirebaseAnalytics.getInstance(this)
 
-        prefs = getSharedPreferences("com.bestmatch.foryou", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("com.your.cupid", Context.MODE_PRIVATE)
         prefs.edit().putString("sessionTime", DateTime.now().toString()).apply()
 
         checkReturn()
@@ -63,6 +65,7 @@ class SplashActivity : BaseActivity() {
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init()
+
     }
 
     fun checkReturn() {
@@ -80,8 +83,13 @@ class SplashActivity : BaseActivity() {
         }
     }
 
-
-
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
+    }
 
 
 
@@ -102,6 +110,12 @@ class SplashActivity : BaseActivity() {
                     }
 
                     taskUrl = prefs.getString("endurl", taskUrl).toString()
+
+                    if (taskUrl.contains("{t3}")){
+                        if (getPreferer(this@SplashActivity) != "Didn't got any referrer follow instructions") {
+                            taskUrl = taskUrl.replace("{t3}", getPreferer(this@SplashActivity).toString())
+                        }
+                    }
 
                     if (value == WEB_VIEW) {
                             startActivity(
@@ -131,7 +145,7 @@ class SplashActivity : BaseActivity() {
 
         progressBar.visibility = View.VISIBLE
 
-        val config = YandexMetricaConfig.newConfigBuilder("7eb086c1-cf78-40c9-90f0-92e628958cbd").build()
+        val config = YandexMetricaConfig.newConfigBuilder("bad42a86-beba-425c-ab59-17ccf98f7197").build()
         YandexMetrica.activate(this, config)
         YandexMetrica.enableActivityAutoTracking(this.application)
 

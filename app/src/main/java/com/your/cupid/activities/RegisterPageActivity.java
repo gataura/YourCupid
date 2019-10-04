@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,17 +12,17 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RegisterPageActivity extends AppCompatActivity {
 
-    private EditText voytiInEditText;
-    private EditText parolEditText;
-    private EditText etEmail;
-    private DatePicker datePicker;
+    private EditText voytiInEditTextsdfsdfdsf;
+    private EditText parolsdfdfEditText;
+    private EditText etEmaildfgdg;
+    private DatePicker datesdfsdfPicker;
     private Button btnRegister;
     private static final String FONT_PATH = "roboto_slab_regular.ttf";
 
@@ -34,11 +34,11 @@ public class RegisterPageActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register_page);
 
-        voytiInEditText = findViewById(R.id.login_reg_edit_text);
-        parolEditText = findViewById(R.id.parol_reg_edit_text);
-        etEmail = findViewById(R.id.type_info_email_et);
-        btnRegister = findViewById(R.id.reg_knopka);
-        datePicker = findViewById(R.id.vibor_dati_reg);
+        voytiInEditTextsdfsdfdsf = findViewById(R.id.login_reg_edit_text_sdfsd);
+        parolsdfdfEditText = findViewById(R.id.parol_reg_edit_text_wef);
+        etEmaildfgdg = findViewById(R.id.type_info_email_et_sdfs);
+        btnRegister = findViewById(R.id.reg_knopka_wefw);
+        datesdfsdfPicker = findViewById(R.id.vibor_sefsefsd_dati_reg);
 
         setTypefaces();
 
@@ -46,8 +46,8 @@ public class RegisterPageActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!voytiInEditText.getText().toString().equals("") || !parolEditText.getText().toString().equals("")
-                        || !etEmail.getText().toString().equals("")){
+                if (!voytiInEditTextsdfsdfdsf.getText().toString().equals("") || !parolsdfdfEditText.getText().toString().equals("")
+                        || !etEmaildfgdg.getText().toString().equals("")){
                     intent.putExtra("flag", "RegisterPageActivity");
                     startActivity(intent);
                 }else {
@@ -59,9 +59,9 @@ public class RegisterPageActivity extends AppCompatActivity {
     }
 
     private void getDate() {
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth() + 1;
-        int year = datePicker.getYear();
+        int day = datesdfsdfPicker.getDayOfMonth();
+        int month = datesdfsdfPicker.getMonth() + 1;
+        int year = datesdfsdfPicker.getYear();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
         Date d = new Date(year, month, day);
         String strDate = dateFormatter.format(d);
@@ -71,9 +71,9 @@ public class RegisterPageActivity extends AppCompatActivity {
 
     private void setTypefaces() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), FONT_PATH);
-        voytiInEditText.setTypeface(typeface);
-        parolEditText.setTypeface(typeface);
-        etEmail.setTypeface(typeface);
+        voytiInEditTextsdfsdfdsf.setTypeface(typeface);
+        parolsdfdfEditText.setTypeface(typeface);
+        etEmaildfgdg.setTypeface(typeface);
         btnRegister.setTypeface(typeface);
     }
 

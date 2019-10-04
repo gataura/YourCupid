@@ -34,7 +34,7 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/muzhika_ishu_radio"
+                android:id="@+id/muzhika_ishu_radio_qwefqw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
@@ -42,7 +42,7 @@
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/babu_ishu_radio"
+                android:id="@+id/babu_sdfsdf_ishu_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
@@ -52,7 +52,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/sleduyushaya_knopka"
+            android:id="@+id/sleduyushaya_sdfsdfsdf_knopka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/purple_50"

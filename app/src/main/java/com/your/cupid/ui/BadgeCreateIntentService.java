@@ -1,4 +1,4 @@
-package com.onenight.friends.ui;
+package com.your.cupid.ui;
 
 import android.annotation.TargetApi;
 import android.app.IntentService;
@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 

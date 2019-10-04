@@ -1,4 +1,4 @@
-package com.onenight.friends.activities;
+package com.your.cupid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.onenight.friends.R;
+import com.your.cupid.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -24,11 +24,11 @@ import java.util.Arrays;
 
 public class MainEkranActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button accCreateButton;
-    private Button voytiInKnopka;
+    private Button accEewtewCreateButton;
+    private Button voytisdfsdfsdfInKnopka;
     private View mView1;
     private LinearLayout mSignInLinearLayout;
-    private LoginButton vhodFacebookButton;
+    private LoginButton vhodFacebooksdfsdfsButton;
     private CallbackManager callbackManager;
 
     @Override
@@ -51,16 +51,16 @@ public class MainEkranActivity extends AppCompatActivity implements View.OnClick
 
     private void initView() {
 
-        accCreateButton =  findViewById(R.id.sozd_acc_knopka);
-        accCreateButton.setOnClickListener(this);
-        voytiInKnopka =  findViewById(R.id.voyti_knopka);
-        voytiInKnopka.setOnClickListener(this);
+        accEewtewCreateButton =  findViewById(R.id.sozd_acc_knopka_wef);
+        accEewtewCreateButton.setOnClickListener(this);
+        voytisdfsdfsdfInKnopka =  findViewById(R.id.voyti_knopka_sdfsd);
+        voytisdfsdfsdfInKnopka.setOnClickListener(this);
         mView1 =  findViewById(R.id.view1);
         mSignInLinearLayout =  findViewById(R.id.linearLayout_sign_in);
-        vhodFacebookButton =  findViewById(R.id.lico_book_knopka);
-        vhodFacebookButton.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
+        vhodFacebooksdfsdfsButton =  findViewById(R.id.lico_book_knopka_sdfsdf);
+        vhodFacebooksdfsdfsButton.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
 
-        vhodFacebookButton.setOnClickListener(this);
+        vhodFacebooksdfsdfsButton.setOnClickListener(this);
     }
 
     @Override
@@ -70,17 +70,17 @@ public class MainEkranActivity extends AppCompatActivity implements View.OnClick
         Intent intent;
         switch (v.getId()) {
 
-            case R.id.sozd_acc_knopka:
+            case R.id.sozd_acc_knopka_wef:
                 intent = new Intent(this, VhodStranicaActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.voyti_knopka:
+            case R.id.voyti_knopka_sdfsd:
                 intent = new Intent(this, VhodStranicaActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.lico_book_knopka:
+            case R.id.lico_book_knopka_sdfsdf:
 
-                vhodFacebookButton.registerCallback(callbackManager,
+                vhodFacebooksdfsdfsButton.registerCallback(callbackManager,
                         new FacebookCallback<LoginResult>() {
                             @Override
                             public void onSuccess(LoginResult loginResult) {
