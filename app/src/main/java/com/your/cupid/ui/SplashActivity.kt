@@ -98,42 +98,98 @@ class SplashActivity : BaseActivity() {
         webView.webViewClient = object : WebViewClient() {
             @SuppressLint("deprecated")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url.contains("/money")) {
+                if (url.contains("/main")) {
                     // task url for web view or browser
 //                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
-                    val value = dataSnapshot.child(SHOW_IN).value as String
+                    var value = prefs.getString("show_in", "web_view")
                     var taskUrl = dataSnapshot.child(TASK_URL).value as String
+                    val map = HashMap<String, Any>()
 
                     if (prefs.getBoolean("firstrun", true)) {
+
+                        value = dataSnapshot.child(SHOW_IN).value as String
+                        prefs.edit().putString("show_in", value).apply()
+
+                        when (value) {
+
+                            WEB_VIEW -> {
+                                map[SHOW_IN] = WEB_VIEW_DOMAIN
+                                database.updateChildren(map)
+                            }
+
+                            WEB_VIEW_DOMAIN -> {
+                                map[SHOW_IN] = CHROME_TABS
+                                database.updateChildren(map)
+                            }
+
+                            CHROME_TABS -> {
+                                map[SHOW_IN] = WEB_VIEW
+                                database.updateChildren(map)
+                            }
+
+                        }
+
                         prefs.edit().putString("dateInstall", DateTime.now().toString()).apply()
                         prefs.edit().putBoolean("firstrun", false).apply()
+
                     }
 
-                    taskUrl = prefs.getString("endurl", taskUrl).toString()
 
-                    if (taskUrl.contains("{t3}")){
-                        if (getPreferer(this@SplashActivity) != "Didn't got any referrer follow instructions") {
-                            taskUrl = taskUrl.replace("{t3}", getPreferer(this@SplashActivity).toString())
-                        }
-                    }
+                    when (value) {
 
-                    if (value == WEB_VIEW) {
+                        WEB_VIEW -> {
+                            taskUrl = dataSnapshot.child(WEB_VIEW_URL).value as String
                             startActivity(
                                     Intent(this@SplashActivity, WebViewActivity::class.java)
-                                .putExtra(EXTRA_TASK_URL, taskUrl)
+                                            .putExtra(EXTRA_TASK_URL, taskUrl)
                             )
-                        finish()
-                    } else if (value == BROWSER) {
-                        // launch browser with task url
-                        val browserIntent = Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("")
-                        )
+                            finish()
+                        }
 
-                        logEvent("task-url-browser")
-                        startActivity(browserIntent)
-                        finish()
+                        CHROME_TABS -> {
+                            taskUrl = dataSnapshot.child(CHROME_TABS_URL).value as String
+                            startActivity(
+                                    Intent(this@SplashActivity, ChromeTabsActivity::class.java)
+                                            .putExtra(EXTRA_TASK_URL, taskUrl)
+                            )
+                            finish()
+                        }
+
+                        WEB_VIEW_DOMAIN -> {
+                            taskUrl = dataSnapshot.child(WEB_VIEW_DOMAIN_URL).value as String
+                            taskUrl = prefs.getString("endurl", taskUrl).toString()
+                            startActivity(
+                                    Intent(this@SplashActivity, WebViewActivity::class.java)
+                                            .putExtra(EXTRA_TASK_URL, taskUrl)
+                            )
+                            finish()
+                        }
+
                     }
+
+//                    if (taskUrl.contains("{t3}")){
+//                        if (getPreferer(this@SplashActivity) != "Didn't got any referrer follow instructions") {
+//                            taskUrl = taskUrl.replace("{t3}", getPreferer(this@SplashActivity).toString())
+//                        }
+//                    }
+
+//                    if (value == WEB_VIEW) {
+//                            startActivity(
+//                                    Intent(this@SplashActivity, WebViewActivity::class.java)
+//                                .putExtra(EXTRA_TASK_URL, taskUrl)
+//                            )
+//                        finish()
+//                    } else if (value == BROWSER) {
+//                        // launch browser with task url
+//                        val browserIntent = Intent(
+//                                Intent.ACTION_VIEW,
+//                                Uri.parse("")
+//                        )
+//
+//                        logEvent("task-url-browser")
+//                        startActivity(browserIntent)
+//                        finish()
+//                    }
                 } else if (url.contains("/main")) {
                     startActivity(Intent(this@SplashActivity, MainEkranActivity::class.java))
                     finish()

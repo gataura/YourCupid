@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
 
         manifestPlaceholders = [
-                onesignal_app_id: '6d7cfbd6-d7e5-4d17-a526-9a35a8dace5c',
+                onesignal_app_id               : '6d7cfbd6-d7e5-4d17-a526-9a35a8dace5c',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
@@ -69,6 +69,8 @@ dependencies {
 
     implementation 'com.yandex.android:mobmetricalib:3.5.3'
 
+    implementation 'com.android.support:customtabs:28.0.0'
+
     implementation "me.leolin:ShortcutBadger:1.1.22@aar"
     implementation 'com.github.arturogutierrez:badges:1.0.5@aar'
 
@@ -80,4 +82,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
