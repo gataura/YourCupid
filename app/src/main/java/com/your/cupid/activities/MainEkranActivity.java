@@ -1,12 +1,16 @@
 package com.your.cupid.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.ValueCallback;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.your.cupid.R;
 import com.facebook.CallbackManager;
@@ -24,6 +28,7 @@ import java.util.Arrays;
 
 public class MainEkranActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Main Actvivity variables
     private Button accEewtewCreateButton;
     private Button voytisdfsdfsdfInKnopka;
     private View mView1;
@@ -31,11 +36,19 @@ public class MainEkranActivity extends AppCompatActivity implements View.OnClick
     private LoginButton vhodFacebooksdfsdfsButton;
     private CallbackManager callbackManager;
 
+    //WebView variables
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main_ekran);
+        Integer webView = 0;
+
+        if (webView == 0) {
+            setContentView(R.layout.activity_web_view);
+        } else {
+            setContentView(R.layout.activity_main_ekran);
+        }
         initView();
         callbackManager = CallbackManager.Factory.create();
 
